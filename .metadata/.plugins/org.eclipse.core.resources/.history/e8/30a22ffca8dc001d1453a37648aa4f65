@@ -1,0 +1,24 @@
+package br.com.unesp.tecnicas_de_programacao;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class URI_1244 {
+
+	public static void main(String[] args) {
+		Scanner teclado = new Scanner(System.in);
+		ArrayList<Object> lista = new ArrayList<>();
+		System.out.println("Digite quanto conjuntos de string voce irá digitar: ");
+		int N = teclado.nextInt();
+		
+		for (int i = 0; i < N; i++) {
+			String linha = teclado.nextLine();
+			lista.add(linha);
+		}
+		System.out.println(lista);
+	
+		
+	
+	}
+
+}

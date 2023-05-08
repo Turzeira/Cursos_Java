@@ -1,0 +1,25 @@
+package br.com.alura.java.io.teste;
+
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class TesteEscrita3 {
+
+	public static void main(String[] args) throws IOException {
+
+		// Fluxo de Escrita/Saida com arquivo
+//		OutputStream file = new FileOutputStream("Java_2.txt");
+//		Writer transformador = new OutputStreamWriter(file); // transforamando byte em caracter
+//		BufferedWriter bw = new BufferedWriter(transformador); // Tranformar os caracter em uma linha
+
+		FileWriter fw = new FileWriter("Java_4.txt");
+		fw.write("Aprendendo a biblioteca java.io");
+		fw.write(System.lineSeparator());
+		fw.write("\r\n");
+		fw.write("Utilizando a class File Write");
+		
+		fw.close();
+
+	}
+
+}

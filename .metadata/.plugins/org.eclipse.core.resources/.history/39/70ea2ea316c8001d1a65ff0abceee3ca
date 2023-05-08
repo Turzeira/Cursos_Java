@@ -1,0 +1,5 @@
+package com.gestaovendas.gestao.dto.cliente;
+
+public class ClienteRequestDTO {
+
+}

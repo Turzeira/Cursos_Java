@@ -1,0 +1,63 @@
+package com.gestaovendas.gestao.servico;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.stereotype.Service;
+
+import com.gestaovendas.gestao.entidades.Cliente;
+import com.gestaovendas.gestao.excecao.RegraNegocioException;
+import com.gestaovendas.gestao.repositorio.ClienteRepositorio;
+
+@Service
+public class ClienteServico {
+
+	@Autowired
+	private ClienteRepositorio clienteRepositorio;
+
+	public List<Cliente> listarTodas() {
+		return clienteRepositorio.findAll();
+	}
+
+	public Optional<Cliente> buscarPorCodigo(Long codigo) {
+		return clienteRepositorio.findById(codigo);
+	}
+
+	public Cliente salvar(Cliente cliente) {
+		validarClienteDuplicado(cliente);
+		return clienteRepositorio.save(cliente);
+	}
+
+	public Cliente atualizar(long codigo, Cliente cliente) {
+		Cliente clienteAtualizar = validarClienteExiste(codigo);
+		validarClienteDuplicado(cliente);
+		BeanUtils.copyProperties(cliente, clienteAtualizar, "codigo");
+		return clienteRepositorio.save(clienteAtualizar);
+	}
+
+	private Cliente validarClienteExiste(long codigo) {
+		Optional<Cliente> cliente = buscarPorCodigo(codigo);
+		if (cliente.isEmpty()) {
+			throw new EmptyResultDataAccessException(1);
+		}
+		return cliente.get();
+	}
+
+	private void validarClienteDuplicado(Cliente cliente) {
+		Cliente clientePorNome = clienteRepositorio.findByNome(cliente.getNome());
+		if (clientePorNome != null && clientePorNome.getCodigo() != cliente.getCodigo()) {
+			throw new RegraNegocioException(
+					String.format("O cliente %s já está cadastrado", cliente.getNome().toUpperCase()));
+
+		}
+	}
+	
+	public void deletar(Long codigo) {
+		validarClienteExiste(codigo);
+		clienteRepositorio.deleteById(codigo);
+	}
+
+}

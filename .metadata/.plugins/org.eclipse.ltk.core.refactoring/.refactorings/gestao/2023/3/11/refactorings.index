@@ -1,0 +1,16 @@
+1678805959599	Move file
+1678806507267	Move 'application.properties' to 'db'
+1678807594263	Copy file
+1678807605086	Delete element
+1678810317936	Delete element
+1678901622659	Rename compilation unit 'CategoriaRequestDT0.java'
+1678904361655	Delete element
+1678904364907	Delete element
+1678904371751	Delete element
+1678904426383	Move compilation unit
+1678904429148	Move compilation unit
+1679073091946	Rename resource 'V03__criar_e_registrar_clientes'
+1679073101427	Rename resource 'V03__criar_e_registrar_clientes,sql'
+1679078261636	Delete element
+1679078408350	Rename resource 'V03__criar_e_registrar_cliente.sql'
+1679083060598	Extract local variable 'enderecoResponseDTO'
