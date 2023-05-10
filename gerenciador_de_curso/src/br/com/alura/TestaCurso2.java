@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class TestaCurso2 {
-
+	//aula 05
 	public static void main(String[] args) {
 		
 		Curso javaColecoes = new Curso("Dominando as coleções do Java", "Paulo Silveira");
