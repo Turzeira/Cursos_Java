@@ -14,7 +14,7 @@ public class TestaCursoComAluno {
 		javaColecoes.adiciona(new Aula("Modelando com coleções",21));
 		
 		
-		Aluno a1 = new Aluno ("Arthur Nunes ",2201056);
+		Aluno a1 = new Aluno ("Arthur Nunes",2201056);
 		Aluno a2 = new Aluno ("Ana Luiza",2200133);
 		Aluno a3 = new Aluno ("Caiao",2244533);
 		
@@ -33,6 +33,17 @@ public class TestaCursoComAluno {
 		
 		Set<Aluno> alunosSincronizados = Collections.synchronizedSet(alunos);
 		System.out.println(alunosSincronizados);
+		
+		
+		System.out.println("\nO "+a1 + " Está matriculado: "+ javaColecoes.estaMatriculado(a1));
+		
+		Aluno nunes = new Aluno ("Arthur Nunes", 2201056);
+		System.out.println("\nEsse Nunes está matriculado?");
+		System.out.println("Resposta: "+ javaColecoes.estaMatriculado(nunes));
+		
+		System.out.println("\nO aluno a1 é equals ao Nunes?");
+		System.out.println("Resposta: "+a1.equals(nunes));
+		
 		
 	}
 
