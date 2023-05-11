@@ -1,6 +1,6 @@
 package br.com.alura;
 
-import java.util.Collections;
+import java.util.Iterator;
 import java.util.Set;
 
 public class TestaCursoComAluno {
@@ -24,15 +24,20 @@ public class TestaCursoComAluno {
 		
 		
 		Set<Aluno> alunos = javaColecoes.getAlunos();
-		System.out.println(alunos);
+		Iterator <Aluno> iterador = alunos.iterator();
+		while(iterador.hasNext()) {
+			System.out.println(iterador.next());
+		}
 		
-		System.out.println("Todos os alunos matriculados: ");
+		
+		
+		System.out.println("\n\nTodos os alunos matriculados: ");
 		javaColecoes.getAlunos().forEach(a->{
 			System.out.println(a);
 		});
 		
-		Set<Aluno> alunosSincronizados = Collections.synchronizedSet(alunos);
-		System.out.println(alunosSincronizados);
+		//Set<Aluno> alunosSincronizados = Collections.synchronizedSet(alunos);
+		//System.out.println(alunosSincronizados);
 		
 		
 		System.out.println("\nO "+a1 + " Está matriculado: "+ javaColecoes.estaMatriculado(a1));
