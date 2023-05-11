@@ -2,8 +2,11 @@ package br.com.alura;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 public class Curso {
@@ -12,6 +15,7 @@ public class Curso {
 	private String instrutor;
 	private List<Aula> aulas = new ArrayList<Aula>();
 	private Set<Aluno> alunos = new HashSet<>();
+	private Map<Integer, Aluno> matriculaParaAluno = new HashMap<>();
 
 	public Curso(String nome, String instrutor) {
 		this.nome = nome;
@@ -35,33 +39,34 @@ public class Curso {
 	}
 
 	public List<Aula> getAulas() {
-		//Não modificavel
+		// Não modificavel
 		return Collections.unmodifiableList(aulas);
 	}
 
 	public void setAulas(List<Aula> aulas) {
 		this.aulas = aulas;
 	}
-	
+
 	public void adiciona(Aula aula) {
 		this.aulas.add(aula);
 	}
-	
+
 	public int getTempoTotal() {
 		return this.aulas.stream().mapToInt(Aula::getTempo).sum();
 	}
-	
+
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "Curso: "+ nome +", tempo total:"+ this.getTempoTotal()+"\nAulas do Curso: "+ this.aulas;
+		return "Curso: " + nome + ", tempo total:" + this.getTempoTotal() + "\nAulas do Curso: " + this.aulas;
 	}
 
 	public void matricula(Aluno aluno) {
 		this.alunos.add(aluno);
-		
+		this.matriculaParaAluno.put(aluno.getNumeroMatricula(), aluno);
+
 	}
-	
+
 	public Set<Aluno> getAlunos() {
 		return Collections.unmodifiableSet(alunos);
 	}
@@ -69,7 +74,12 @@ public class Curso {
 	public boolean estaMatriculado(Aluno aluno) {
 		return this.alunos.contains(aluno);
 	}
-	
-	
+
+	public Aluno buscaMatriculado(int numero) {
+		if(!matriculaParaAluno.containsKey(numero)) {
+			throw new NoSuchElementException("matricula nao encotrada");
+		}
+		return matriculaParaAluno.get(numero);
+	}
 
 }
